@@ -1,9 +1,19 @@
+Test <br>
+Larry Williamson <br>
+
 <?php
+/*
 $dbhost = 'mysql.cs.uky.edu';
-$dbname = 'llwi222';
-$dbuser = 'llwi222';
-$dbpass = 'britt1an'; 
-$conn = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
+$dbname = 'cs405webstore';
+$dbuser = 'adminwS9wZ2Z';
+$dbpass = '_yihkn4GmKrd'; 
+*/
+$db_host = $_ENV['OPENSHIFT_DB_HOST'];
+$db_user = $_ENV['OPENSHIFT_DB_USERNAME'];
+$db_pass = $_ENV['OPENSHIFT_DB_PASSWORD'];
+$db_name = $_ENV['OPENSHIFT_APP_NAME'];
+$db_port = $_ENV['OPENSHIFT_DB_PORT'];
+$conn = mysqli_connect($db_host, $db_user, $db_pass, $db_name, $db_port);
 
 
 if(! $conn )
