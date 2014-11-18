@@ -1,13 +1,13 @@
 /*  createTables.sql*/
 CREATE TABLE Employee (
-		EID VARCHAR(20) NOT NULL,
+		EID INT(6) NOT NULL auto_increment,
 		password VARCHAR(20) NOT NULL,
 		isManager BOOLEAN NOT NULL DEFAULT 0,
 		PRIMARY KEY (EID)
 );
 
 CREATE TABLE Item (
-		IID INT NOT NULL,
+		IID INT(10) NOT NULL auto_increment,
 		quantity INT NOT NULL,
 		price FLOAT NOT NULL,
 		name VARCHAR(20),
@@ -22,7 +22,7 @@ CREATE TABLE Customer (
 );
 
 CREATE TABLE Transactions (
-                TID INT NOT NULL,
+                TID INT(10) NOT NULL auto_increment,
                 status VARCHAR(20) NOT NULL,
 		total INT NOT NULL,
 		tDate date NOT NULL,
@@ -30,7 +30,7 @@ CREATE TABLE Transactions (
 );
 
 CREATE TABLE Sale (
-		SID INT NOT NULL,
+		SID INT(10) NOT NULL auto_increment,
 		percentage FLOAT,
 		startDate date NOT NULL,
 		endDate date NOT NULL,
