@@ -1,12 +1,14 @@
 /*  createTables.sql*/
-CREATE TABLE Employee (
+CREATE TABLE employees (
 		EID INT(6) NOT NULL auto_increment,
+		LastName VARCHAR(12) NOT NULL,
+		FirstName VARCHAR(10) NOT NULL,
 		password VARCHAR(20) NOT NULL,
 		isManager BOOLEAN NOT NULL DEFAULT 0,
 		PRIMARY KEY (EID)
 );
 
-CREATE TABLE Item (
+CREATE TABLE item (
 		IID INT(10) NOT NULL auto_increment,
 		quantity INT NOT NULL,
 		price FLOAT NOT NULL,
@@ -14,14 +16,16 @@ CREATE TABLE Item (
 		PRIMARY KEY (IID)
 );
 
-CREATE TABLE Customer (
+CREATE TABLE customers (
 		CID VARCHAR(254) NOT NULL,
+		FirstName VARCHAR(10) NOT NULL,
+		LastName VARCHAR(12) NOT NULL,
 		password VARCHAR(20) NOT NULL,
 		isVIP BOOLEAN NOT NULL DEFAULT 0,
 		PRIMARY KEY (CID)
 );
 
-CREATE TABLE Transactions (
+CREATE TABLE transactions (
                 TID INT(10) NOT NULL auto_increment,
                 status VARCHAR(20) NOT NULL,
 		total INT NOT NULL,
@@ -29,7 +33,7 @@ CREATE TABLE Transactions (
 		PRIMARY KEY (TID)
 );
 
-CREATE TABLE Sale (
+CREATE TABLE sale (
 		SID INT(10) NOT NULL auto_increment,
 		percentage FLOAT,
 		startDate date NOT NULL,
@@ -38,7 +42,7 @@ CREATE TABLE Sale (
 
 );
 
-CREATE TABLE inCART (
+CREATE TABLE in_cart (
 		CID VARCHAR(254) NOT NULL,
 		IID INT NOT NULL,
 		PRIMARY KEY(CID, IID)
@@ -62,9 +66,9 @@ CREATE TABLE promote (
 		PRIMARY KEY(EID, SID)
 );
 
-CREATE TABLE onSale (
+CREATE TABLE on_sale (
 		IID INT NOT NULL,
 		SID INT NOT NULL,
 		PRIMARY KEY(IID,SID)
 );
-*/
+
