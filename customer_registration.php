@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>Add Student</title>
+<title>Add Customer</title>
 </head>
 <body>
 <form action="http://www.cs.uky.edu/~llwi222/webstore/customer_added.php" method="post">
