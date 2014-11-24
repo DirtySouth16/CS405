@@ -1,4 +1,4 @@
-INSERT INTO item values
+INSERT INTO items values
 ("NULL", 23, 500, "Xbox One"),
 ("NULL", 17, 400, "Playstation 4"),
 ("NULL", 21, 300, "Wii U"),
