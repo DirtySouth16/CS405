@@ -16,13 +16,10 @@ $db_name = $_ENV['OPENSHIFT_APP_NAME'];
 $db_port = $_ENV['OPENSHIFT_DB_PORT'];
 $conn = mysqli_connect($db_host, $db_user, $db_pass, $db_name, $db_port);
 */
-<<<<<<< HEAD
 require_once('../../webstore/mysqli_connect.php');
-=======
 
 require_once('../../webstore/mysqli_connect.php');
 
->>>>>>> 327b93849b8e39f66e31a2f71f0706323e255b94
 if(! $conn )
 {
   die('Could not connect: ' . mysql_error());
