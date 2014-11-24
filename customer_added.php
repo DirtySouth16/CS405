@@ -61,8 +61,8 @@ if(isset($_POST['submit'])){
         
         require_once('../../webstore/mysqli_connect.php');
         
-        $query = "INSERT INTO Customer (CID, LastName, FirstName, password, isVIP)
-	 VALUES (?, ?, ?, ?, 0)";
+        $query = "INSERT INTO customers (CID, last_name, first_name, password, start_date, is_vip)
+	 VALUES (?, ?, ?, ?, NOW(), 0)";
         
         $stmt = mysqli_prepare($conn, $query);
 	/*
