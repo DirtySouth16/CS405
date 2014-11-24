@@ -3,7 +3,7 @@
 require_once('../../webstore/mysqli_connect.php');
 
 // Create a query for the database
-$query = "SELECT CID, FirstName, LastName FROM Customer";
+$query = "SELECT CID, FirstName, LastName FROM customers";
 
 // Get a response from the database by sending the connection
 // and the query
