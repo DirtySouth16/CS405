@@ -20,7 +20,7 @@ while($row = mysqli_fetch_array($response)){
 echo '<tr><td align="left">' . 
 $row['name'] . '</td><td align="left">' . 
 $row['IID'] . '</td><td align="left">' .
-$row['price'] . '</td><td align="left">' .
+'$' . $row['price'] . '</td><td align="left">' .
 $row['quantity'] . '</td><td align="left">' ; 
 echo '</tr>';
 }
