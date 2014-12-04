@@ -11,7 +11,7 @@ if(!isset($_SESSION["employee"])){
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Employee Page</title>
-<link rel="stylesheet" href="/style/style.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../style/style.css" type="text/css" media="screen" />
 </head>
 
 <body>
@@ -22,6 +22,7 @@ if(!isset($_SESSION["employee"])){
     <div align="left" style="margin-left:24px;">
       <p><a href="http://www.cs.uky.edu/~llwi222/webstore/admin/inventory.php">Inventory</a><br />
       <p><a href="http://www.cs.uky.edu/~llwi222/webstore/admin/getCustomerInfo.php">Customers</a><br />
+	<?php if($_SESSION["manager"]==1){ echo "<p><a href='http://www.cs.uky.edu/~llwi222/webstore/admin/promotions.php'>Promotions</a><br /> ";}?>
     </div>
     <br />
   <br />

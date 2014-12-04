@@ -15,18 +15,20 @@ if (isset($_POST["EID"]) && isset($_POST["password"])) {
     // Connect to the MySQL database  
     require_once('../../../webstore/mysqli_connect.php'); 
    // include "../../../webstore/mysqli_connect.php";
-    $query= "SELECT EID FROM employees WHERE EID = ? AND password = ? LIMIT 1"; // query the person
+    $query= "SELECT is_manager FROM employees WHERE EID = ? AND password = ? LIMIT 1"; // query the person
 	$stmt = mysqli_prepare($conn, $query);
 	mysqli_stmt_bind_param($stmt, 'is', $EID, $password);
 	mysqli_stmt_execute($stmt);
+	mysqli_stmt_bind_result($stmt,$manager);
 	mysqli_stmt_store_result($stmt);
+	//mysqli_stmt_bind_result($manager);
 	 // ------- MAKE SURE PERSON EXISTS IN DATABASE ---------
     $existCount = mysqli_stmt_num_rows($stmt); // count the row nums
     if ($existCount == 1) { // evaluate the count
 	while($row = mysqli_stmt_fetch($stmt)){ 
-             $id = $row["EID"];
+	  //   $manager = $row["is_manager"];
 	 }
-	 $_SESSION["id"] = $EID;
+	 $_SESSION["manager"] = $manager;
 	 $_SESSION["employee"] = $EID;
 	 $_SESSION["password"] = $password;
 	 header("location: index.php");
