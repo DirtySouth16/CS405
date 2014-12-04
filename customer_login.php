@@ -52,8 +52,8 @@ if (isset($_POST["CID"]) && isset($_POST["password"])) {
   <?php include_once("template_header.php");?>
   <div id="pageContent"><br />
     <div align="left" style="margin-left:24px;">
-      <h2>Please Log In To Manage the Store</h2>
-      <form id="form1" name="form1" method="post" action="employee_login.php">
+      <h2>Please Log In</h2>
+      <form id="form1" name="form1" method="post" action="customer_login.php">
         User Name:<br />
           <input name="CID" type="text" id="username" size="40" />
         <br /><br />
