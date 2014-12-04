@@ -1,6 +1,8 @@
 <?php
 // Get a connection for the database
 require_once('../../webstore/mysqli_connect.php');
+//Display Header
+include_once("template_header");
 // Create a query for the database
 $query = "SELECT IID, name, price, quantity FROM items";
 // Get a response from the database by sending the connection
