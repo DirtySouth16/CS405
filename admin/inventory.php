@@ -1,6 +1,6 @@
 <?php
 // Get a connection for the database
-require_once('../../webstore/mysqli_connect.php');
+require_once('../../../webstore/mysqli_connect.php');
 // Create a query for the database
 $query = "SELECT IID, name, price, quantity FROM items";
 // Get a response from the database by sending the connection

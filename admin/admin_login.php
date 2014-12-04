@@ -1,38 +1,30 @@
 <?php
 session_start();
-error_reporting(E_ALL);
-if (isset($_SESSION["employee"])) {
+if (isset($_SESSION["manager"])) {
     header("location: index.php"); 
     exit();
 }
 ?>
 <?php 
 // Parse the log in form if the user has filled it out and pressed "Log In"
-if (isset($_POST["EID"]) && isset($_POST["password"])) {
+if (isset($_POST["username"]) && isset($_POST["password"])) {
 
-	$EID = preg_replace('#[^A-Za-z0-9]#i', '', $_POST["EID"]); // filter everything but numbers and letters
+	$EID = preg_replace('#[^A-Za-z0-9]#i', '', $_POST["username"]); // filter everything but numbers and letters
     $password = preg_replace('#[^A-Za-z0-9]#i', '', $_POST["password"]); // filter everything but numbers and letters
     // Connect to the MySQL database  
-    require_once('../../../webstore/mysqli_connect.php'); 
-   // include "../../../webstore/mysqli_connect.php";
-    $query= "SELECT EID FROM employees WHERE EID = ? AND password = ? LIMIT 1"; // query the person
-	$stmt = mysqli_prepare($conn, $query);
-	mysqli_stmt_bind_param($stmt, 'is', $EID, $password);
-	mysqli_stmt_execute($stmt);
-	mysqli_stmt_store_result($stmt);
-	 // ------- MAKE SURE PERSON EXISTS IN DATABASE ---------
-    $existCount = mysqli_stmt_num_rows($stmt); // count the row nums
+    include "../../../webstore/mysqli_connect.php"; 
+    $sql = mysql_query("SELECT id FROM employees WHERE EID='$EID' AND password='$password' LIMIT 1"); // query the person
+    // ------- MAKE SURE PERSON EXISTS IN DATABASE ---------
+    $existCount = mysql_num_rows($sql); // count the row nums
     if ($existCount == 1) { // evaluate the count
-	while($row = mysqli_stmt_fetch($stmt)){ 
-             $id = $row["EID"];
-	 }
-	 $_SESSION["id"] = $EID;
-	 $_SESSION["employee"] = $EID;
-	 $_SESSION["password"] = $password;
-	 header("location: index.php");
-         mysqli_stmt_close($stmt);
-	 mysqli_close($conn);
-	 exit();
+	     while($row = mysql_fetch_array($sql)){ 
+             $id = $row["id"];
+		 }
+		 $_SESSION["id"] = $id;
+		 $_SESSION["employee"] = $EID;
+		 $_SESSION["password"] = $password;
+		 header("location: index.php");
+         exit();
     } else {
 		echo 'That information is incorrect, try again <a href="index.php">Click Here</a>';
 		exit();
@@ -43,7 +35,7 @@ if (isset($_POST["EID"]) && isset($_POST["password"])) {
 <html xmlns>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Employee Log In </title>
+<title>Admin Log In </title>
 <link rel="stylesheet" href="../style/style.css" type="text/css" media="screen" />
 </head>
 
@@ -53,9 +45,9 @@ if (isset($_POST["EID"]) && isset($_POST["password"])) {
   <div id="pageContent"><br />
     <div align="left" style="margin-left:24px;">
       <h2>Please Log In To Manage the Store</h2>
-      <form id="form1" name="form1" method="post" action="employee_login.php">
+      <form id="form1" name="form1" method="post" action="admin_login.php">
         User Name:<br />
-          <input name="EID" type="text" id="username" size="40" />
+          <input name="username" type="text" id="username" size="40" />
         <br /><br />
         Password:<br />
        <input name="password" type="password" id="password" size="40" />

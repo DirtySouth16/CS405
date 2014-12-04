@@ -20,7 +20,7 @@ if(!isset($_SESSION["employee"])){
   <?php include_once("../template_header.php");?>
   <div id="pageContent"><br />
     <div align="left" style="margin-left:24px;">
-      <p><a href="www.cs.uky.edu/~llwi222/webstore/admin/inventory.php">Inventory </a><br />
+      <p><a href="http://www.cs.uky.edu/~llwi222/webstore/admin/inventory.php">Inventory </a><br />
     </div>
     <br />
   <br />
