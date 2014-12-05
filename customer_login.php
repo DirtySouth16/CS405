@@ -44,7 +44,7 @@ if (isset($_POST["CID"]) && isset($_POST["password"])) {
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Employee Log In </title>
-<link rel="stylesheet" href="/style/style.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="style/style.css" type="text/css" media="screen" />
 </head>
 
 <body>

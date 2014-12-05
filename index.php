@@ -19,7 +19,7 @@ if ($productCount > 0) {
 
 			 $dynamicList .= '<table width="100%" border="0" cellspacing="0" cellpadding="6">
         <tr>
-          <td width="17%" valign="top"><a href="product.php?id=' . $id . '"><img style="border:#666 1px solid;" src="http://cs.uky.edu/~llwi222/webstore/image_assets/' . $id . '.jpg" alt="' . $product_name . '" width="77" height="102" border="1" /></a></td>
+          <td valign="top"><div id="thumbnail"><a href="product.php?id=' . $id . '"><img style="border:#666 1px solid;" src="http://cs.uky.edu/~llwi222/webstore/image_assets/' . $id . '.jpg" alt="' . $product_name . '" border="1" /></a></div></td>
           <td width="83%" valign="top">' . $product_name . '<br />
             $' . $price . '<br />
             <a href="product.php?id=' . $id . '">View Product Details</a></td>
@@ -45,11 +45,9 @@ if ($productCount > 0) {
   <table width="100%" border="0" cellspacing="0" cellpadding="10">
   <tr>
       <p><?php echo $dynamicList; ?><br />
-        </p>
-      </p></td>
+      </td>
   </tr>
 </table>
-
   </div>
   <?php include_once("template_footer.php");?>
 </div>
