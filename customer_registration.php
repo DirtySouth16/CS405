@@ -129,7 +129,7 @@ if(isset($_POST['submit'])){
   <input type="text" placeholder="Last" name="LastName" size="30" value="">
 </div>
 <br />
-<div class="input-group">
+<div class="input-group" style="padding-left:30px;">
   <span class="input-group-addon">Email:</span>
   <input type="text" placeholder="Email" name="CID" size="30" value="">
 </div>
@@ -157,6 +157,7 @@ if(isset($_POST['submit'])){
 -->   
 <br />
 <button type="submit" name="submit" class="btn btn-default">Submit</button>
+<br />
 <br />
 </form>
 </div>

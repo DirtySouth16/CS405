@@ -1,5 +1,5 @@
 <div id="pageHeader"><table width="100%" border="0" cellspacing="0" cellpadding="12">
-	<div style="float: right;" cellpadding="20">
+	<div style="float:right;height: 21px;width: 80.797;width: 120px;">
         <a href="http://www.cs.uky.edu/~llwi222/webstore/customer_login.php">log in</a>|<a href="http://www.cs.uky.edu/~llwi222/webstore/customer_registration.php">register</a>
 </div>
   <tr>

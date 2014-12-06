@@ -1,7 +1,7 @@
 <?php
 session_start();
 error_reporting(E_ALL);
-if (isset($_SESSION["customer"])) {
+if (isset($_SESSION["CID"])) {
     header("location: index.php"); 
     exit();
 }
@@ -12,7 +12,38 @@ if (isset($_POST["CID"]) && isset($_POST["password"])) {
 
 	$CID = preg_replace('#[^A-Za-z0-9]#i', '', $_POST["CID"]); // filter everything but numbers and letters
     $password = preg_replace('#[^A-Za-z0-9]#i', '', $_POST["password"]); // filter everything but numbers and letters
-    // Connect to the MySQL database  
+    
+    $data_missing = array();
+    
+    if(empty($_POST['CID'])){
+
+        // Adds name to array
+        $data_missing[] = 'Username';
+
+    } else {
+
+        // Trim white space from the name and store the name
+        $email = trim($_POST['CID']);
+
+    }
+
+    if(empty($_POST['password'])){
+
+        // Adds name to array                                                                         
+        $data_missing[] = 'password';
+
+    } else {
+
+        // Trim white space from the name and store the name                                          
+        $pass = trim($_POST['password']);
+
+    }
+
+
+
+	if(empty($data_missing)){
+
+	// Connect to the MySQL database  
     require_once('../../webstore/mysqli_connect.php'); 
    // include "../../../webstore/mysqli_connect.php";
     $query= "SELECT CID FROM customers WHERE CID = ? AND password = ? LIMIT 1"; // query the person
@@ -34,9 +65,23 @@ if (isset($_POST["CID"]) && isset($_POST["password"])) {
 	 mysqli_close($conn);
 	 exit();
     } else {
-		echo 'That information is incorrect, try again <a href="index.php">Click Here</a>';
+		echo 'That information is incorrect, try again <a href="customer_login.php">Click Here</a>';
 		exit();
 	}
+	}else {
+
+        echo 'You need to enter the following data<br />';
+
+        foreach($data_missing as $missing){
+
+            echo "$missing<br />";
+
+        }
+
+    }
+	
+
+
 }
 ?>
 <!DOCTYPE html>
@@ -51,26 +96,33 @@ if (isset($_POST["CID"]) && isset($_POST["password"])) {
 <div align="center" id="mainWrapper">
   <?php include_once("template_header.php");?>
   <div id="pageContent"><br />
-    <div align="left" style="margin-left:24px;">
+    <div align="center" style="margin-left:24px;">
       <h2>Please Log In</h2>
       <form id="form1" name="form1" method="post" action="customer_login.php">
-        User Name:<br />
+       
+	<div class="input-group">
+  		<span class="input-group-addon">Username:</span>
+ 		 <input type="text" placeholder="Email" name="CID" size="30" value="">
+	</div>
+	<br />
+	<div>
+	  <span class="input-group-addon">Password:</span>
+	  <input type="text" placeholder="password" name= "password" size="30" value="">
+	</div>
+<!--
+	 User Name:<br />
           <input name="CID" type="text" id="username" size="40" />
         <br /><br />
         Password:<br />
        <input name="password" type="password" id="password" size="40" />
-       <br />
-       <br />
+-->    
        <br />
        
          <input type="submit" name="button" id="button" value="Log In" />
-       
+      <br />
+	<br />
       </form>
-      <p>&nbsp; </p>
     </div>
-    <br />
-  <br />
-  <br />
   </div>
   <?php include_once("template_footer.php");?>
 </div>
