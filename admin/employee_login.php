@@ -9,7 +9,8 @@ if (isset($_SESSION["employee"])) {
 <?php 
 // Parse the log in form if the user has filled it out and pressed "Log In"
 if (isset($_POST["EID"]) && isset($_POST["password"])) {
-
+	session_destroy();//destroy any current customer session
+	session_start();
 	$EID = preg_replace('#[^A-Za-z0-9]#i', '', $_POST["EID"]); // filter everything but numbers and letters
     $password = preg_replace('#[^A-Za-z0-9]#i', '', $_POST["password"]); // filter everything but numbers and letters
     // Connect to the MySQL database  

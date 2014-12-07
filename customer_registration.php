@@ -136,7 +136,7 @@ if(isset($_POST['submit'])){
 <br />
 <div>
   <span class="input-group-addon">Password:</span>
-  <input type="text" placeholder="password" name= "password" size="30" value="">
+  <input type="password" placeholder="password" name= "password" size="30" value="">
 </div>   
 <!--                                                                           
 <p>First Name:                                                                                                     

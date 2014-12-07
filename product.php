@@ -1,8 +1,3 @@
-
-<?php
-error_reporting(E_ALL);
-ini_set('display_errors', '1');
-?>
 <?php 
 // Check to see the URL variable is set and that it exists in the database
 if (isset($_GET['id'])) {
@@ -44,6 +39,30 @@ if (isset($_GET['id'])) {
 	exit();
 }
 ?>
+
+<?php session_start();
+if(isset($_POST['submit'])){
+echo "submit";
+if (!isset($_SESSION["CID"])){
+        header("location: customer_login.php");
+        exit();
+}
+require_once('../../webstore/mysqli_connect.php');
+echo "test";
+$query = "INSERT INTO in_cart VALUES (".$_SESSION["CID"].",". $_POST["iid"].")";
+var_dump($query);
+echo $query;
+
+die;
+$stmt = mysqli_prepare($conn, $query);
+mysqli_stmt_execute($stmt);
+mysqli_stmt_store_result($stmt);
+
+mysqli_close($conn);
+header("location: product.php?id=".$_GET["iid"]);
+}
+?>
+
 <!DOCTYPE html>
 <html xmlns\>
 <head>
@@ -66,9 +85,9 @@ if (isset($_GET['id'])) {
         <?php echo $stock. " in stock"; ?> 
 <br />
         </p>
-      <form id="form1" name="form1" method="post" action="cart.php">
-        <input type="hidden" name="pid" id="pid" value="<?php echo $id; ?>" />
-        <input type="submit" name="button" id="button" value="Add to Shopping Cart" />
+      <form id="form1" name="form1" method="post" action="add_to_cart.php" >
+	<input type="hidden" name="iid" id="iid" value="<?php echo $_GET["id"]; ?>" />
+        <input type="submit" name="submit" id="button" value="Add to Shopping Cart" />
       </form>
       </td>
     </tr>

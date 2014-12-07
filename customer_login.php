@@ -1,6 +1,5 @@
 <?php
 session_start();
-error_reporting(E_ALL);
 if (isset($_SESSION["CID"])) {
     header("location: index.php"); 
     exit();
@@ -46,18 +45,18 @@ if (isset($_POST["CID"]) && isset($_POST["password"])) {
 	// Connect to the MySQL database  
     require_once('../../webstore/mysqli_connect.php'); 
    // include "../../../webstore/mysqli_connect.php";
-    $query= "SELECT CID FROM customers WHERE CID = ? AND password = ? LIMIT 1"; // query the person
+    $query= "SELECT first_name FROM customers WHERE CID = ? AND password = ? LIMIT 1"; // query the person
 	$stmt = mysqli_prepare($conn, $query);
 	mysqli_stmt_bind_param($stmt, 'is', $CID, $password);
 	mysqli_stmt_execute($stmt);
+	mysqli_stmt_bind_result($stmt, $first_name);
 	mysqli_stmt_store_result($stmt);
 	 // ------- MAKE SURE PERSON EXISTS IN DATABASE ---------
     $existCount = mysqli_stmt_num_rows($stmt); // count the row nums
     if ($existCount == 1) { // evaluate the count
-	while($row = mysqli_stmt_fetch($stmt)){ 
-             $id = $row["CID"];
-	 }
-	 $_SESSION["id"] = $CID;
+	 mysqli_stmt_fetch($stmt);
+	 
+	 $_SESSION["CID"] = $CID;
 	 $_SESSION["first"] = $first_name;
 	 $_SESSION["password"] = $password;
 	 header("location: index.php");
@@ -107,7 +106,7 @@ if (isset($_POST["CID"]) && isset($_POST["password"])) {
 	<br />
 	<div>
 	  <span class="input-group-addon">Password:</span>
-	  <input type="text" placeholder="password" name= "password" size="30" value="">
+	  <input type="password" placeholder="password" name= "password" size="30" value="">
 	</div>
 <!--
 	 User Name:<br />
@@ -116,7 +115,7 @@ if (isset($_POST["CID"]) && isset($_POST["password"])) {
         Password:<br />
        <input name="password" type="password" id="password" size="40" />
 -->    
-       <br />
+      <br />
        
          <input type="submit" name="button" id="button" value="Log In" />
       <br />

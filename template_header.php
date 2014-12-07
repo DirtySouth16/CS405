@@ -1,7 +1,30 @@
 <div id="pageHeader"><table width="100%" border="0" cellspacing="0" cellpadding="12">
+<?php session_start(); if(!isset($_SESSION["employee"]) && !isset($_SESSION["first"])){
+
+echo '  
 	<div style="float:right;height: 21px;width: 80.797;width: 120px;">
         <a href="http://www.cs.uky.edu/~llwi222/webstore/customer_login.php">log in</a>|<a href="http://www.cs.uky.edu/~llwi222/webstore/customer_registration.php">register</a>
-</div>
+</div>';
+}else{ 
+
+require_once('../../webstore/mysqli_connect.php');
+
+
+$query = "SELECT COUNT(*) FROM in_cart WHERE CID = ?";
+$stmt = mysqli_prepare($conn, $query);
+mysqli_stmt_bind_param($stmt,'s',$_SESSION["CID"]);
+mysqli_stmt_execute($stmt);
+mysqli_stmt_bind_result($stmt, $cart_count);
+//var_dump($_SESSION["CID"]);
+mysqli_stmt_store_result($stmt);
+mysqli_stmt_fetch($stmt);
+
+echo '
+        <div style="float:right;height: 21px;width: 80.797;width: 220px;">
+	Hello, '. $_SESSION["employee"]. $_SESSION["first"] .'| <a href="http://www.cs.uky.edu/~llwi222/webstore/my_cart.php">Cart '.$cart_count.'</a>| <a href="http://www.cs.uky.edu/~llwi222/webstore/logout.php">logout</a>
+
+</div>';}
+?>
   <tr>
     <td width="32%"><a href="http://www.cs.uky.edu/~llwi222/webstore/index.php"><img src="http://www.cs.uky.edu/~llwi222/webstore/style/logo.jpg" alt="Logo" width="252" height="36" border="0" /></a></td>
     <td width="68%">&nbsp;</td> <!-- align="right"><a href="http://www.cs.uky.edu/~llwi222/webstore/cart.php">Your Cart</a></td> -->

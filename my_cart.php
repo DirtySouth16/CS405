@@ -1,17 +1,24 @@
-<?php 
+
+<?php
+session_start();
+
 // Run a select query to get my letest 6 items
 // Connect to the MySQL database  
-require_once('../../webstore/mysqli_connect.php'); 
+require_once('../../webstore/mysqli_connect.php');
 $dynamicList = "";
-$result = mysqli_query($conn,"SELECT * FROM items ORDER BY quantity DESC LIMIT 6");
-$productCount = mysqli_num_rows($result); // count the output amount
+$query = "select * from items, in_cart where in_cart.CID = ? and in_cart.IID = items.IID";
+$stmt = mysqli_prepare($conn, $query);
+mysqli_stmt_bind_param($stmt, 's', $_SESSION["CID"]);
+mysqli_stmt_execute($stmt);
+mysqli_stmt_bind_result($stmt, $IID, $quantity, $price, $name,$CID, $IID2);
+mysqli_stmt_store_result($stmt);
+$productCount = mysqli_stmt_num_rows($stmt); // count the output amount
 if ($productCount > 0) {
-	while($row = mysqli_fetch_array($result)){ 
-       $id = $row["IID"];
-			 $product_name = $row["name"];
-			 $price = $row["price"];
-
-			 $dynamicList .= '<table width="100%" border="0" cellspacing="0" cellpadding="6">
+ 	while($row = mysqli_stmt_fetch($stmt)){
+       			$id = $IID;
+                         $product_name = $name;
+                         $price = $price;
+                         $dynamicList .= '<table width="100%" border="0" cellspacing="0" cellpadding="6">
         <tr>
           <td valign="top"><div id="thumbnail"><a href="product.php?id=' . $id . '"><img style="border:#666 1px solid;" src="http://cs.uky.edu/~llwi222/webstore/image_assets/' . $id . '.jpg" alt="' . $product_name . '" border="1" /></a></div></td>
           <td width="83%" valign="top">' . $product_name . '<br />
@@ -21,10 +28,10 @@ if ($productCount > 0) {
       </table>';
     }
 } else {
-	$dynamicList = "We have no products listed in our store yet";
+        $dynamicList = "We have no products listed in our store yet";
 }
-//mysqli_close();
 ?>
+
 <!DOCTYPE html>
 <html xmlns>
 <head>
