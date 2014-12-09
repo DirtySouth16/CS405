@@ -87,7 +87,8 @@ header("location: product.php?id=".$_GET["iid"]);
         </p>
       <form id="form1" name="form1" method="post" action="add_to_cart.php" >
 	<input type="hidden" name="iid" id="iid" value="<?php echo $_GET["id"]; ?>" />
-        <input type="submit" name="submit" id="button" value="Add to Shopping Cart" />
+        <input type="hidden" name="cart_quantity" id="cart_quantity" value="1"/>
+	<input type="submit" name="add_to_cart" id="add_to_cart" value="Add to Shopping Cart" />
       </form>
       </td>
     </tr>

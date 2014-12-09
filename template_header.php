@@ -5,12 +5,12 @@ echo '
 	<div style="float:right;height: 21px;width: 80.797;width: 120px;">
         <a href="http://www.cs.uky.edu/~llwi222/webstore/customer_login.php">log in</a>|<a href="http://www.cs.uky.edu/~llwi222/webstore/customer_registration.php">register</a>
 </div>';
-}else{ 
+}elseif(isset($_SESSION["first"])){ 
 
 require_once('../../webstore/mysqli_connect.php');
 
 
-$query = "SELECT COUNT(*) FROM in_cart WHERE CID = ?";
+$query = "SELECT SUM(quantity) FROM in_cart WHERE CID = ?";
 $stmt = mysqli_prepare($conn, $query);
 mysqli_stmt_bind_param($stmt,'s',$_SESSION["CID"]);
 mysqli_stmt_execute($stmt);
@@ -21,9 +21,17 @@ mysqli_stmt_fetch($stmt);
 
 echo '
         <div style="float:right;height: 21px;width: 80.797;width: 220px;">
-	Hello, '. $_SESSION["employee"]. $_SESSION["first"] .'| <a href="http://www.cs.uky.edu/~llwi222/webstore/my_cart.php">Cart '.$cart_count.'</a>| <a href="http://www.cs.uky.edu/~llwi222/webstore/logout.php">logout</a>
+	Hello, '. $_SESSION["first"] .'| <a href="http://www.cs.uky.edu/~llwi222/webstore/my_cart.php">Cart '.$cart_count.'</a>| <a href="http://www.cs.uky.edu/~llwi222/webstore/logout.php">logout</a>
 
 </div>';}
+else{
+
+echo '
+        <div style="float:right;height: 21px;width: 80.797;width: 160px;">
+        Hello, '. $_SESSION["employee"].'| <a href="http://www.cs.uky.edu/~llwi222/webstore/logout.php">logout</a>
+	</div>';
+
+}
 ?>
   <tr>
     <td width="32%"><a href="http://www.cs.uky.edu/~llwi222/webstore/index.php"><img src="http://www.cs.uky.edu/~llwi222/webstore/style/logo.jpg" alt="Logo" width="252" height="36" border="0" /></a></td>

@@ -52,8 +52,8 @@ if (isset($_POST["EID"]) && isset($_POST["password"])) {
 
 <body>
 <div align="center" id="mainWrapper">
-  <?php include_once("../template_header.php");?>
-  <div id="pageContent"><br />
+  <?php// include_once("../template_header.php"); // Currently causing bug in seesions with cart implementation?> 
+<div id="pageContent"><br />
     <div align="left" style="margin-left:24px;">
       <h2>Please Log In To Manage the Store</h2>
       <form id="form1" name="form1" method="post" action="employee_login.php">
