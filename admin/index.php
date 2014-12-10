@@ -22,7 +22,8 @@ if(!isset($_SESSION["employee"])){
     <div align="left" style="margin-left:24px;">
       <p><a href="http://www.cs.uky.edu/~llwi222/webstore/admin/inventory.php">Inventory</a><br />
       <p><a href="http://www.cs.uky.edu/~llwi222/webstore/admin/getCustomerInfo.php">Customers</a><br />
-	<?php if($_SESSION["manager"]==1){ echo "<p><a href='http://www.cs.uky.edu/~llwi222/webstore/admin/promotions.php'>Promotions</a><br /> ";}?>
+      <p><a href="http://www.cs.uky.edu/~llwi222/webstore/admin/Orders.php">Customers</a><br />
+	<?php if($_SESSION["manager"]==1){ echo "<p><a href='http://www.cs.uky.edu/~llwi222/webstore/admin/promotions.php'>Promotions</a><br /><p><a href='http://www.cs.uky.edu/~llwi222/webstore/admin/statistics.php'>Statistics</a><br /> ";}?>
     </div>
     <br />
   <br />
