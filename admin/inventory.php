@@ -1,6 +1,8 @@
 <?php
 // Get a connection for the database
 require_once('../../../webstore/mysqli_connect.php');
+//Output Header
+include_once("template_header.php");
 // Create a query for the database
 $query = "SELECT IID, name, price, quantity FROM items";
 // Get a response from the database by sending the connection
@@ -23,7 +25,7 @@ $row['name'] . '</td><td align="left">' .
 $row['IID'] . '</td><td align="left">' .
 $row['price'] . '</td><td align="left">' .
 $row['quantity'] . '</td><td align="left">' ;
-
+//Input and button for updating inventory
 //echo '<form action="inventory.php">';
 //echo '<input type="text"><input type="button" onclick="???" value="Set"</form>';
 
