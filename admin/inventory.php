@@ -13,7 +13,8 @@ cellspacing="5" cellpadding="8">
 <tr><td align="left"><b>Name</b></td>
 <td align="left"><b>ID #</b></td>
 <td align="left"><b>Price</b></td>
-<td align="left"><b>In Stock</b></td></tr>';
+<td align="left"><b>In Stock</b></td>
+<td align="left"><b>Set</b></td></tr>';
 // mysqli_fetch_array will return a row of data from the query
 // until no further data is available
 while($row = mysqli_fetch_array($response)){
@@ -21,7 +22,11 @@ echo '<tr><td align="left">' .
 $row['name'] . '</td><td align="left">' . 
 $row['IID'] . '</td><td align="left">' .
 $row['price'] . '</td><td align="left">' .
-$row['quantity'] . '</td><td align="left">' ; 
+$row['quantity'] . '</td><td align="left">' ;
+
+//echo '<form action="inventory.php">';
+//echo '<input type="text"><input type="button" onclick="???" value="Set"</form>';
+
 echo '</tr>';
 }
 echo '</table>';
