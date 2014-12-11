@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 if (isset($_SESSION["CID"])) {
     header("location: index.php"); 
     exit();

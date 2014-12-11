@@ -20,8 +20,9 @@ mysqli_stmt_store_result($stmt);
 mysqli_stmt_fetch($stmt);
 
 echo '
-        <div style="float:right;height: 21px;width: 80.797;width: 220px;">
-	Hello, '. $_SESSION["first"] .'| <a href="http://www.cs.uky.edu/~llwi222/webstore/my_cart.php">Cart '.$cart_count.'</a>| <a href="http://www.cs.uky.edu/~llwi222/webstore/logout.php">logout</a>
+        <div style="float:right;height: 21px;width: 80.797;width: 240px;">
+	Hello, '. $_SESSION["first"] .'| <a href="http://www.cs.uky.edu/~llwi222/webstore/my_cart.php">Cart '.$cart_count.'</a>|
+	<a href="http://www.cs.uky.edu/~llwi222/webstore/my_orders.php">Orders</a> |  <a href="http://www.cs.uky.edu/~llwi222/webstore/logout.php">logout</a>
 
 </div>';}
 else{

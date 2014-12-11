@@ -1,3 +1,13 @@
+<?php
+session_start();
+
+
+if (!isset($_SESSION["CID"])) {
+    header("location: index.php");
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html xmlns>
 <head>
@@ -18,7 +28,8 @@
 require_once('../../webstore/mysqli_connect.php');
 //Display Header
 // Create a query for the database
-$query = "SELECT IID, name, price, quantity FROM items";
+
+$query = "SELECT distinct transactions.TID, total, status, tDate FROM transactions natural join ordered, purchased where ordered.TID = transactions.TID and purchased.TID=transactions.TID and CID='".$_SESSION['CID']."'";
 // Get a response from the database by sending the connection
 // and the query
 $response = @mysqli_query($conn, $query);
@@ -26,18 +37,17 @@ $response = @mysqli_query($conn, $query);
 if($response){
 echo //'<table align="left"
 //cellspacing="5" cellpadding="8">
-'<tr><td align="left"><b>Name</b></td>
-<td align="left"><b>ID #</b></td>
-<td align="left"><b>Price</b></td>
-<td align="left"><b>In Stock</b></td></tr>';
+'<tr><td align="left"><b>Order #</b></td>
+<td align="left"><b>Status </b></td>
+<td align="left"><b>Order Placed</b></td>
+<td align="left"><b>Total</b></td></tr>';
 // mysqli_fetch_array will return a row of data from the query
 // until no further data is available
 while($row = mysqli_fetch_array($response)){
-echo '<tr><td align="left"><a href="http://www.cs.uky.edu/~llwi222/webstore/product.php?id='.$row['IID'].'">' . 
-$row['name'] . '</a></td><td align="left">' . 
-$row['IID'] . '</td><td align="left">' .
-'$' . $row['price'] . '</td><td align="left">' .
-$row['quantity'] . '</td><td align="left">' ; 
+echo '<tr><td>'.$row['TID'].'</td><td align="left">' .
+$row['status'] . '</td><td align="left">' .
+$row['tDate'] . '</td><td align="left">' .
+'$' . $row['total'] . '</td><td align="left">';
 echo '</tr>';
 }
 echo '</table>';
@@ -54,4 +64,5 @@ mysqli_close($conn);
 </div>
 </body>
 </html>
+
 

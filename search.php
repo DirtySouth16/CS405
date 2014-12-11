@@ -6,25 +6,35 @@ require_once('../../webstore/mysqli_connect.php');
 //var_dump($_POST);
 //die;
 
+error_reporting(E_ALL);
+ini_set('display_errors', '1');
+
 if(!isset($_POST['searchField'])){
 	header("location: index.php");
 	exit();
 }
 $dynamicList = "";
-$query = "SELECT IID, name, price FROM items WHERE name LIKE ? OR IID LIKE ? OR price LIKE ?";
-$stmt = mysqli_prepare($conn, $query);
 $search = '%'.$_POST['searchField'].'%';
-echo $search;
-mysqli_stmt_bind_param($stmt, 'sss', $search, $search, $search);
-mysqli_stmt_execute($stmt);
-mysqli_stmt_bind_result($stmt, $IID, $name, $price);
-mysqli_stmt_store_result($stmt);
-$productCount = mysqli_num_rows($stmt); // count the output amount
+
+
+$query = "SELECT IID, name, price FROM items WHERE name LIKE '".$search."' OR IID LIKE '".$search."' OR price LIKE '".$search."'";
+
+
+//$stmt = mysqli_prepare($conn, $query);
+
+//mysqli_stmt_bind_param($stmt, 'sss', $search, $search, $search);
+//mysqli_stmt_execute($stmt);
+//mysqli_stmt_bind_result($stmt, $IID, $name, $price);
+//mysqli_stmt_store_result($stmt);
+
+$result = mysqli_query($conn, $query);
+
+$productCount = mysqli_num_rows($result); // count the output amount
 if ($productCount > 0) {
-	while($row = mysqli_stmt_fetch($stmt)){ 
-       			 $id = $IID;
-			 $product_name = $name;
-			 $price = $price;
+	while($row = mysqli_fetch_array($result)){ 
+       			 $id = $row["IID"];
+			 $product_name = $row["name"];
+			 $price = $row["price"];
 
 			 $dynamicList .= '<table width="100%" border="0" cellspacing="0" cellpadding="6">
         <tr>

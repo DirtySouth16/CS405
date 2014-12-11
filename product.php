@@ -1,3 +1,7 @@
+
+
+
+
 <?php 
 // Check to see the URL variable is set and that it exists in the database
 if (isset($_GET['id'])) {
