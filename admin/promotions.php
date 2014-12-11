@@ -28,7 +28,7 @@ echo '<tr><td align="left"><b>Name</b></td>
 <td align="left"><b>ID #</b></td>
 <td align="left"><b>Price</b></td>
 <td align="left"><b>In Stock</b></td>
-<td align="left"><b>Sale %</b></td></tr>';
+<td align="left"><b>Sale % &emsp;&emsp;&emsp;&emsp;&emsp;&emsp; Start &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; End</b></td></tr>';
 // mysqli_fetch_array will return a row of data from the query
 // until no further data is available
 while($row = mysqli_fetch_array($response)){
@@ -41,7 +41,9 @@ $row['quantity'] . '</td><td align="left">' ;
 echo '<form id=form'.$row['IID'].' method="post" action="update_price.php">
         <input type="hidden" name="iid" id="iid" value="'.$row['IID'].'" />
         <input type="text" name="update_price" id="update_price"/>
-        <input type="submit" name="sale" id="sale" value="Update"/>
+	 <input type="date" name="sdate">
+	 <input type="date" name="edate">
+        <input type="submit" name="sale" id="sale" value="Commit"/>
        </form></td>';
 
 echo '</tr>';

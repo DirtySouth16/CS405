@@ -14,9 +14,19 @@ require_once('../../../webstore/mysqli_connect.php');
 $query = "UPDATE transactions set status='Shipped' where TID =".$_POST["tid"];
 
 mysqli_query($conn, $query);
+
+$query = "select * from ordered where TID = ".$_POST["tid"];
+
+$result = mysqli_query($conn, $query);
+//mysqli_query($conn, $result);
+
+while($row = mysqli_fetch_array($result)){
+		$iid = $row["IID"];
+		echo $iid;
+		$query = "UPDATE items set quantity = quantity-(select quantity from ordered where TID = ".$_POST["tid"]." and IID = ".$iid.") where IID = ".$iid;
+		mysqli_query($conn, $query);
+}
 mysqli_close($conn);
 header("location: Orders.php");
-
-//header("location: product.php?id=".$_POST["iid"]);
 }
 ?>
