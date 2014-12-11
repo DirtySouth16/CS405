@@ -2,7 +2,7 @@
 <html xmlns>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Store Home Page</title>
+<title>Inventory</title>
 <link rel="stylesheet" href="style/style.css" type="text/css" media="screen" />
 </head>
 <body>

@@ -41,10 +41,10 @@ if ($productCount > 0) {
           <td valign="top"><div id="thumbnail"><a href="product.php?id=' . $id . '"><img style="border:#666 1px solid;" src="http://cs.uky.edu/~llwi222/webstore/image_assets/' . $id . '.jpg" alt="' . $product_name . '" border="1" /></a></div></td>
           <td width="83%" valign="top">' . $product_name . '<br />
             $' . $price . '<br />
-	    <form method="post" action="add_to_cart.php" id="myform">
+	    <form method="post" action="add_to_cart.php" id="myform'.$id.'">
             <input type="hidden" name="iid" id="iid" value="'.$id.'" />
 	    <input type="hidden" name="add_to_cart" id="add_to_cart" value="submit"/>
-	    Quantity <select name="cart_quantity" onchange="document.getElementById(\'myform\').submit()">'.$select.'</select><br />
+	    Quantity <select name="cart_quantity" onchange="document.getElementById(\'myform'.$id.'\').submit()">'.$select.'</select><br />
             </form>
 	    <a href="product.php?id=' . $id . '">View Product Details</a></td>
         </tr>
