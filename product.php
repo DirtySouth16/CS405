@@ -42,7 +42,18 @@ if (isset($_GET['id'])) {
 	echo "Data to render this page is missing.";
 	exit();
 }
+
+
+
+$result = mysqli_query($conn, "SELECT percentage FROM on_sale natural join sales WHERE IID=".$_GET['id']." AND CURDATE() between startDate and endDate");
+$row = mysqli_fetch_array($result);
+$num_rows =mysqli_num_rows($result);
+if($num_rows > 0){
+$price = $price * (1 - $row['percentage']);
+}
 ?>
+
+
 
 <?php session_start();
 if(isset($_POST['submit'])){
@@ -54,8 +65,6 @@ if (!isset($_SESSION["CID"])){
 require_once('../../webstore/mysqli_connect.php');
 echo "test";
 $query = "INSERT INTO in_cart VALUES (".$_SESSION["CID"].",". $_POST["iid"].")";
-var_dump($query);
-echo $query;
 
 die;
 $stmt = mysqli_prepare($conn, $query);

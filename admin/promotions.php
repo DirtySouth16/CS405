@@ -1,3 +1,25 @@
+<?php
+
+session_start();
+if(!isset($_SESSION["employee"])){
+  header("location: employee_login.php");
+  exit();
+}
+?>
+
+<?php
+require_once('../../../webstore/mysqli_connect.php');
+if(isset($_POST['eDate'])){
+	$query = "insert into sales values(NULL, ".$_POST['update_price']/100 .", STR_TO_DATE('".$_POST['sDate']."', '%Y-%m-%D'),STR_TO_DATE('".$_POST['eDate']."', '%Y-%m-%D')) ";
+	mysqli_query($conn, $query);
+	$result = mysqli_query($conn, "select MAX(SID) from sales");
+	$row = mysqli_fetch_array($result);
+	$SID = $row['MAX(SID)'];
+	mysqli_query($conn, "insert into promotes values(".$_SESSION['employee'].", ".$SID.")");
+	mysqli_query($conn, "insert into on_sale values( ".$_POST['iid'].", ".$SID.")");
+}
+?>
+
 <!DOCTYPE html>
 <html xmlns>
 <head>
@@ -38,11 +60,11 @@ $row['IID'] . '</td><td align="left">' .
 $row['price'] . '</td><td align="left">' .
 $row['quantity'] . '</td><td align="left">' ;
 //Input and button for updating sale price
-echo '<form id=form'.$row['IID'].' method="post" action="update_price.php">
+echo '<form id=form'.$row['IID'].' method="post" action="promotions.php">
         <input type="hidden" name="iid" id="iid" value="'.$row['IID'].'" />
         <input type="text" name="update_price" id="update_price"/>
-	 <input type="date" name="sdate">
-	 <input type="date" name="edate">
+	 <input type="date" name="sDate">
+	 <input type="date" name="eDate">
         <input type="submit" name="sale" id="sale" value="Commit"/>
        </form></td>';
 

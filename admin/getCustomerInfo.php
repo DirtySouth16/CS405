@@ -1,3 +1,17 @@
+
+<!DOCTYPE html>
+<html xmlns>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Customer Information</title>
+<link rel="stylesheet" href="../style/style.css" type="text/css" media="screen" />
+</head>
+<body>  
+<div align="center" id="mainWrapper">
+  <?php include_once("../template_header.php");?>
+  <div id="pageContent">
+  <table width="100%" border="0" cellspacing="0" cellpadding="10">
+
 <?php
 // Get a connection for the database
 require_once('../../../webstore/mysqli_connect.php');
@@ -11,10 +25,8 @@ $response = @mysqli_query($conn, $query);
 
 // If the query executed properly proceed
 if($response){
-echo '<table align="left"
-cellspacing="5" cellpadding="8">
 
-<tr><td align="left"><b>First Name</b></td>
+echo'<tr><td align="left"><b>First Name</b></td>
 <td align="left"><b>Last Name</b></td>
 <td align="left"><b>Email</b></td>
 <td align="left"><b>Member Since</b></td></tr>';
@@ -46,3 +58,10 @@ echo mysqli_error($conn);
 mysqli_close($conn);
 
 ?>
+
+  </div>
+  <?php include_once("../template_footer.php");?>
+</div>
+</body>
+</html>
+

@@ -33,10 +33,20 @@ echo //'<table align="left"
 // mysqli_fetch_array will return a row of data from the query
 // until no further data is available
 while($row = mysqli_fetch_array($response)){
+
+$price = $row['price'];
+$result = mysqli_query($conn, "SELECT percentage FROM on_sale natural join sales WHERE IID=".$row['IID']." AND CURDATE() between startDate and endDate");
+$sale_row = mysqli_fetch_array($result);
+$num_rows =mysqli_num_rows($result);
+if($num_rows > 0){
+$price = $price * (1 - $sale_row['percentage']);
+}
+
+
 echo '<tr><td align="left"><a href="http://www.cs.uky.edu/~llwi222/webstore/product.php?id='.$row['IID'].'">' . 
 $row['name'] . '</a></td><td align="left">' . 
 $row['IID'] . '</td><td align="left">' .
-'$' . $row['price'] . '</td><td align="left">' .
+'$' . $price . '</td><td align="left">' .
 $row['quantity'] . '</td><td align="left">' ; 
 echo '</tr>';
 }

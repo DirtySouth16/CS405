@@ -46,7 +46,7 @@ if ($productCount > 0) {
       </table>';
     }
 } else {
-	$dynamicList = "We have no products listed in our store yet";
+	$dynamicList = "We have no products related to your search.";
 }
 mysqli_close($conn);
 

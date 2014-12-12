@@ -23,7 +23,7 @@ if(!isset($_SESSION["employee"])){
       <p><a href="http://www.cs.uky.edu/~llwi222/webstore/admin/inventory.php">Inventory</a><br />
       <p><a href="http://www.cs.uky.edu/~llwi222/webstore/admin/getCustomerInfo.php">Customers</a><br />
       <p><a href="http://www.cs.uky.edu/~llwi222/webstore/admin/Orders.php">Orders</a><br />
-	<?php if($_SESSION["manager"]==1){ echo "<p><a href='http://www.cs.uky.edu/~llwi222/webstore/admin/promotions.php'>Promotions</a><br /><p><a href='http://www.cs.uky.edu/~llwi222/webstore/admin/statistics.php'>Statistics</a><br /> ";}?>
+	<?php if($_SESSION["manager"]==1){ echo "<p><a href='http://www.cs.uky.edu/~llwi222/webstore/admin/promotions.php'>Promotions</a><br /><p><a href='http://www.cs.uky.edu/~llwi222/webstore/admin/statistics.php?interval=30'>Statistics</a><br /> ";}?>
     </div>
     <br />
   <br />

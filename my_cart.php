@@ -2,12 +2,20 @@
 <?php
 session_start();
 
-
+require_once('../../webstore/mysqli_connect.php');
 if (!isset($_SESSION["CID"])) {
     header("location: index.php");
     exit();
 }
 ?>
+
+<?php
+if(isset($_POST['remove'])){
+	mysqli_query($conn, "delete from in_cart where IID = ".$_POST['iid']);
+
+}
+?>
+
 
 <?php
 
@@ -52,7 +60,10 @@ while($row = mysqli_stmt_fetch($stmt)){
     <input type="hidden" name="add_to_cart" id="add_to_cart" value="submit"/>
     Quantity <select name="cart_quantity" onchange="document.getElementById(\'myform'.$id.'\').submit()">'.$select.'</select><br />
     </form>
-    <a href="product.php?id=' . $id . '">View Product Details</a></td>
+    <a href="product.php?id=' . $id . '">View Product Details</a>
+    <form method="post" action="my_cart.php" id="remove'.$id.'"/>
+    <input type="hidden" name="iid" id="iid" value="'.$id.'" />
+    <input type="submit" name="remove" value="Delete"/></form></td>
 </tr>
 </table>';
 }
@@ -67,7 +78,7 @@ $dynamicList = "There is nothing in your cart.";
 <html xmlns>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Store Home Page</title>
+<title>My Cart</title>
 <link rel="stylesheet" href="style/style.css" type="text/css" media="screen" />
 </head>
 <body>

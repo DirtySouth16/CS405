@@ -42,12 +42,12 @@ echo '
 
 
   <tr>
-    <td colspan="1"><a href="http://www.cs.uky.edu/~llwi222/webstore/index.php">Home</a> &nbsp; &middot; &nbsp; <a href="http://www.cs.uky.edu/~llwi222/webstore/inventoryList.php">Products</a> &nbsp; &middot; &nbsp; <a href="#">Help</a> &nbsp; &middot; &nbsp; <a href="#">Contact</a> &nbsp;
+    <td colspan="1"><a href="http://www.cs.uky.edu/~llwi222/webstore/index.php">Home</a> &nbsp; &middot; &nbsp; <a href="http://www.cs.uky.edu/~llwi222/webstore/inventoryList.php">Products</a> &nbsp; &middot; &nbsp; <a href="http://www.cs.uky.edu/~llwi222/webstore/help.php">Help</a> &nbsp; &middot; &nbsp; <a href="http://www.cs.uky.edu/~llwi222/webstore/contact.php">Contact</a> &nbsp;
 
     </td>
     <td colspan="1">
     <div id="searchBar" style="float: right;">
-        <form method="post" id="searchForm" action="search.php"> 
+        <form method="post" id="searchForm" action="http://www.cs.uky.edu/~llwi222/webstore/search.php"> 
 	 <label for="search">Search:</label>
       	<input type="text" name="searchField" name="searchField"/>
 	</form>
