@@ -24,7 +24,7 @@ if(! $conn )
 {
   die('Could not connect: ' . mysql_error());
 }
-$query_file = 'makeTables.sql';
+$query_file = 'sqldump.sql';
 $sql = file_get_contents($query_file);
 if($sql === FALSE)
 {
