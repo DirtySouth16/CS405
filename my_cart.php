@@ -86,7 +86,7 @@ $dynamicList = "There is nothing in your cart.";
 <?php include_once("template_header.php");?>
 <div id="pageContent">
 <div id="totalWindow" style="float: right; position: fixed; margin-top: 5px; right: 400px; box-shadow: 0 0 1px 2px #888888;padding: 5px;">
-Total: $<?php echo"$total" ?> <form id="checkoutForm" method="post" action="checkout.php"><input type="hidden" name="total" value=<?php echo '"'.$total.'"' ?>/>  <input type="submit" name="checkout" value="checkout"> </form>
+Total: $<?php echo"$total" ?> <form id="checkoutForm" style="float: right;" method="post" action="checkout.php"><input type="hidden" name="total" value=<?php echo '"'.$total.'"' ?>/>  <input type="submit" name="checkout" value="checkout"> </form>
 </div>	
 <table width="100%" border="0" cellspacing="0" cellpadding="10">
 <tr>
