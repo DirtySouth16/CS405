@@ -4,7 +4,8 @@
 require_once('../../webstore/mysqli_connect.php'); 
 $dynamicList = "";
 //$result = mysqli_query($conn,"SELECT * FROM items ORDER BY quantity DESC LIMIT 6");
-$query = "select * from ordered o, items i where i.IID = o.IID order by o.quantity desc limit 6";
+
+$query = "select *, SUM(o.quantity) from ordered o, items i where i.IID = o.IID group by o.iid order by SUM(o.quantity) desc limit 6";
 
 $result = mysqli_query($conn, $query);
 $productCount = mysqli_num_rows($result); // count the output amount

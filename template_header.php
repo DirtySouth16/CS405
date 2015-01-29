@@ -1,4 +1,5 @@
 <div id="pageHeader"><table width="100%" border="0" cellspacing="0" cellpadding="12">
+<link rel="shortcut icon" href="http://www.cs.uky.edu/~llwi222/webstore/image_assets/favicon.ico"/>
 <?php session_start(); if(!isset($_SESSION["employee"]) && !isset($_SESSION["first"])){
 
 echo '  
