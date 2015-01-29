@@ -11,7 +11,7 @@
   <div id="pageContent">
   <table width="100%" border="0" cellspacing="0" cellpadding="10">
 <br />
-	Don't Contact us..
+	Don't Contact us.
 
 
   </div>
